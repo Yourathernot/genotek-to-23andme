@@ -6,7 +6,7 @@
 предоставляет бесплатно, в платный формат 23AndMe (3, 4 или 5 версии)
 
 ## Использование
-Поместить [genome.bd](genome.bd) и [genotek.exe] в одну папку
+Поместить [genome.bd](genome.bd) и [genotek.exe](https://github.com/Yourathernot/genotek-to-23andme/releases/download/1.0/genotek.exe) в одну папку
 
 ```shell
 # Варианты использования
