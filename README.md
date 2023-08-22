@@ -6,14 +6,15 @@
 предоставляет бесплатно, в платный формат 23AndMe (3, 4 или 5 версии)
 
 ## Использование
-Поместить [genome.bd](genome.bd) и [genotek.exe](https://github.com/Yourathernot/genotek-to-23andme/releases/download/1.0/genotek.exe) в одну папку
-Запустить командную строку и перейти в эту папку
+Поместить [genome.bd](genome.bd), [genotek.exe](https://github.com/Yourathernot/genotek-to-23andme/releases/download/main%402023.1.0/genotek.exe) и vcf файл в одну папку
+
+Запустить **genotek.exe** двойным нажатием или через командную строку с указанием аргументов
 
 ```shell
 # Варианты использования
 genotek -vcf [путь vcf файла]
 genotek -vcf [путь vcf файла] -output [путь выходного файла]
-genotek -vcf [путь vcf файла] -output [путь выходного файла] -version [3/4/5]
+genotek -vcf [путь vcf файла] -output [путь выходного файла] -version [версия 3/4/5]
 
 # Помощь
 genotek -h
