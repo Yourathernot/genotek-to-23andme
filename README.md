@@ -7,12 +7,13 @@
 
 ## Использование
 Поместить [genome.bd](genome.bd) и [genotek.exe](https://github.com/Yourathernot/genotek-to-23andme/releases/download/1.0/genotek.exe) в одну папку
+Запустить командную строку и перейти в эту папку
 
 ```shell
 # Варианты использования
-genotek -vcf [название vcf файла]
-genotek -vcf [название vcf файла] -output [название выходного файла]
-genotek -vcf [название vcf файла] -output [название выходного файла] -version [3/4/5]
+genotek -vcf [путь vcf файла]
+genotek -vcf [путь vcf файла] -output [путь выходного файла]
+genotek -vcf [путь vcf файла] -output [путь выходного файла] -version [3/4/5]
 
 # Помощь
 genotek -h
