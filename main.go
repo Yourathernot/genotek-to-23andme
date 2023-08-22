@@ -5,6 +5,7 @@ import (
 	"database/sql"
 	"flag"
 	"fmt"
+	"io/fs"
 	"log"
 	_ "modernc.org/sqlite"
 	"os"
@@ -51,7 +52,7 @@ func main() {
 	var vcf, out string
 	var v int
 	flag.StringVar(&vcf, "vcf", "", "Path to the vcf")
-	flag.StringVar(&out, "output", "23AndMe.txt", "Path to the output file")
+	flag.StringVar(&out, "output", "", "Path to the output file")
 	flag.IntVar(&v, "version", 5, "Version of 23AndMe (3, 4 or 5)")
 	flag.Parse()
 
@@ -64,6 +65,18 @@ func main() {
 	concurrencyLevel := runtime.NumCPU() * 8
 	db.SetMaxIdleConns(concurrencyLevel)
 	defer db.Close()
+
+	if vcf == "" {
+		filepath.WalkDir(wd, func(path string, d fs.DirEntry, err error) error {
+			if err != nil {
+				return err
+			}
+			if filepath.Ext(d.Name()) == ".vcf" {
+				vcf = d.Name()
+			}
+			return nil
+		})
+	}
 
 	fileInput, err := os.Open(vcf)
 	if err != nil {
@@ -128,6 +141,10 @@ func main() {
 	_, err = db.Exec(fmt.Sprintf("INSERT INTO [tmpGenotek] (rsid, gt) VALUES %s", res))
 	if err != nil {
 		log.Fatalln(err)
+	}
+
+	if out == "" {
+		out = fmt.Sprintf(strings.ReplaceAll(fileInput.Name(), ".vcf", "_23AndMeV%d.txt"), v)
 	}
 
 	fileOutput, err := os.Create(out)
